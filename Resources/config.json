@@ -1,0 +1,4 @@
+{
+    "chroma_path": "../chroma_db",
+    "chroma_collection_name": "legal_docs"
+}
