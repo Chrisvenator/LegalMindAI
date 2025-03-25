@@ -13,6 +13,7 @@ from config import load_config
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+CORS(app, origins=["http://localhost:3000"])
 
 # Set up logging
 logging.basicConfig(
