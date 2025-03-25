@@ -1,12 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Menu, FileText, Briefcase, Calculator } from 'lucide-react';
+import { Send, Menu, FileText, Briefcase, Calculator, User } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { askLegalQuestion } from '../services/apiService';
 import '../index.css';
 
 const LegalAdviserChat = () => {
     const [messages, setMessages] = useState([
         {
-            text: "Hi! To start a small business in Austria, follow these key steps:\n1. Choose a Business Structure: Decide on a legal form (e.g., sole proprietorship, GmbH).\n2. Register Your Business: Register with the Commercial Register (Firmenbuch).\n3. Get Necessary Licenses: Obtain any required trade licenses (Gewerbeschein).\n4. Understand Tax Obligations: Register with the tax office and understand VAT requirements.\n\nFor detailed information, consult the Austrian Chamber of Commerce or a local attorney.",
+            text: "**Willkommen bei Ihrer digitalen Rechtsberatung**\n\n" +
+                "- Kompetent\n" +
+                "- Vertraulich\n" +
+                "- Rund um die Uhr\n\n" +
+                "Ob *Mietrecht*, *Arbeitsrecht* oder *Vertragsfragen* – ich helfe Ihnen, Ihre rechtlichen Anliegen schnell und verständlich zu klären. Was kann ich heute für Sie tun?",
             sender: 'bot'
         }
     ]);
@@ -34,12 +39,12 @@ const LegalAdviserChat = () => {
         try {
             const response = await askLegalQuestion(inputMessage);
             setMessages(prevMessages => [...prevMessages, {
-                text: response.answer || "I apologize, but I couldn't find a specific answer to your question. Please consult with a legal professional for personalized advice.",
+                text: response.answer || "**I apologize**, but I couldn't find a specific answer to your question. Please consult with a legal professional for personalized advice.",
                 sender: 'bot'
             }]);
         } catch (error) {
             setMessages(prevMessages => [...prevMessages, {
-                text: "Sorry, there was an error processing your question. Please try again.",
+                text: "**Sorry**, there was an error processing your question. Please try again.",
                 sender: 'bot'
             }]);
         } finally {
@@ -90,24 +95,40 @@ const LegalAdviserChat = () => {
                 </div>
 
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 max-w-5xl mx-auto">
                     {messages.map((message, index) => (
                         <div
                             key={index}
-                            className={`max-w-[80%] p-3 rounded-lg ${
+                            className={`max-w-[80%] p-3 rounded-lg flex items-start ${
                                 message.sender === 'user'
                                     ? 'bg-fbc-blue-70 text-fbc-white ml-auto'
                                     : 'bg-fbc-gray-20 text-fbc-primary-text mr-auto'
                             }`}
                         >
-                            {message.text}
+                            {message.sender === 'user' ? (
+                                <User className="mr-2 mt-1 flex-shrink-0" size={20} />
+                            ) : null}
+                            <div className={`markdown-content ${message.sender === 'user' ? 'text-fbc-white' : 'text-fbc-primary-text'}`}>
+                                <ReactMarkdown
+                                    components={{
+                                        h1: ({node, ...props}) => <h1 className="text-xl font-bold mb-2" {...props} />,
+                                        h2: ({node, ...props}) => <h2 className="text-lg font-semibold mb-1" {...props} />,
+                                        ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-2" {...props} />,
+                                        ol: ({node, ...props}) => <ol className="list-decimal pl-5 mb-2" {...props} />,
+                                        strong: ({node, ...props}) => <strong className="font-bold" {...props} />,
+                                        em: ({node, ...props}) => <em className="italic" {...props} />
+                                    }}
+                                >
+                                    {message.text}
+                                </ReactMarkdown>
+                            </div>
                         </div>
                     ))}
                     <div ref={messagesEndRef} />
                 </div>
 
                 {/* Input Area */}
-                <div className="bg-fbc-white p-4 flex items-center border-t border-fbc-gray-20">
+                <div className="p-4 flex items-center border-t border-fbc-gray-20 max-w-5xl mx-56">
                     <input
                         type="text"
                         value={inputMessage}
