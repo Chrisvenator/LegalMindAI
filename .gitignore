@@ -182,3 +182,4 @@ cython_debug/
 /.idea/VectorSage.iml
 /chroma_db/
 /.idea/
+/resources/
