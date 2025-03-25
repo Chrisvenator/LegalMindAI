@@ -1,20 +1,33 @@
 # LegalMind AI - Intelligent Legal Assistant
 
-LegalMind AI is a powerful legal assistant that leverages vector databases and large language models to provide accurate, contextual legal analysis and advice based on your own legal documents.
+LegalMind AI is a powerful web-based legal assistant that leverages vector databases, large language models, and a modern React frontend to provide accurate, contextual legal analysis and advice.
 
 ## Overview
 
-LegalMind AI creates a searchable knowledge base from your legal documents and uses advanced AI to generate precise legal insights. The system processes text files containing legal information, stores them in a vector database (ChromaDB), and retrieves relevant context to answer legal questions using the DeepSeek language model.
+LegalMind AI creates a searchable knowledge base from your legal documents and uses advanced AI to generate precise legal insights. The system consists of:
+- A Flask backend that processes legal documents
+- A ChromaDB vector database for semantic search
+- A React frontend for intuitive user interaction
+- DeepSeek language model for intelligent analysis
 
-## Features
+## Key Features
 
 - **Custom Knowledge Base**: Import and process your own legal text documents
 - **Semantic Search**: Find relevant legal information using natural language queries
-- **AI-Powered Analysis**: Generate detailed legal analysis with proper terminology and citations
-- **Methodical Approach**: Systematically examines legal questions with consideration of statutes, case law, and legal principles
-- **Easy Setup**: Simple configuration and straightforward usage
+- **AI-Powered Analysis**: Generate detailed legal insights with proper terminology
+- **Modern Web Interface**: Clean, responsive React-based chat application
+- **Cross-Platform Compatibility**: Runs on multiple operating systems
+
+## System Requirements
+
+- Python 3.10+
+- Node.js and npm
+- Ollama
+- ChromaDB
 
 ## Installation
+
+### Backend Setup
 
 1. Clone the repository:
    ```bash
@@ -22,17 +35,43 @@ LegalMind AI creates a searchable knowledge base from your legal documents and u
    cd legalmind-ai
    ```
 
-2. Install [Ollama](https://ollama.ai/) and the DeepSeek model:
+2. Install Ollama and the DeepSeek model:
    ```bash
    ollama pull deepseek-r1:8b
    ```
 
-3. Create a `resources` directory and place your config.json file:
+3. Create a virtual environment and install dependencies:
+
+   Windows:
+   ```shell
+   python -m venv venv
+   .\venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+   Linux/macOS:
+   ```shell
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+### Configuration
+
+1. Create a `resources` directory in the project root:
    ```bash
    mkdir resources
    ```
 
-4. Create a config.json file in the resources directory:
+2. Create a `config.json` file in the `resources` directory:
    ```json
    {
        "chroma_path": "../chroma_db",
@@ -40,77 +79,74 @@ LegalMind AI creates a searchable knowledge base from your legal documents and u
    }
    ```
 
-5. Create a new venv enviroment, activate it and install all dependencies from the requirements.txt:
+3. Place your legal text files (.txt) in the `resources` directory
 
-Windows: 
-```shell
-python -m venv envname
-.\envname\Scripts\activate
-pip install -r requirements.txt
-```
+## Running the Application
 
-Linux:
-```shell
-python -m venv envname
-source envname/bin/activate
-pip install -r requirements.txt
-```
+### Startup
 
+1. Start the backend:
+   ```bash
+   python flask_backend.py
+   ```
 
-6. Put law .txt Files into Resources
-## Usage
+2. In a separate terminal, start the frontend:
+   ```bash
+   cd frontend
+   npm start
+   ```
 
 ### Setting up the Knowledge Base
 
-Place your legal text files (.txt) in the `resources` directory, then run:
+To create and populate the ChromaDB:
 
 ```bash
 python main.py setup
 ```
 
-Running the program in setup mode will create and populate a local chroma db inside a folder named **chroma**.
+## Usage
 
-### Asking Legal Questions
-
-To query the system with legal questions:
-
-```bash
-python main.py question
-```
-Running the program in question mode will prompt a user to ask a question.
-For best result enter a question that can be answered with the data stored in the chroma database. 
-When prompted with your legal question, the system will:
-1. Find relevant information from your legal documents
-2. Generate a detailed legal analysis using the LLM
-3. Present the answer with proper legal terminology and considerations
+1. Open `http://localhost:3000` in your web browser
+2. Enter legal questions in the chat interface
+3. Receive AI-generated legal insights based on your document collection
 
 ## Project Structure
 
 ```
 legalmind-ai/
-├── app.py                    # Core application logic
-├── config.py                 # Configuration handling
-├── main.py                   # Entry point
-├── services/
-│   └── chroma_db_handler.py  # Vector database interactions
-├── resources/                # Legal text files and configuration
-│   ├── config.json           # Configuration settings
-│   └── *.txt                 # Your legal documents
-└── chroma_db/                # Vector database storage (created automatically)
+├── backend/
+│   ├── app.py                 # Core application logic
+│   ├── config.py              # Configuration handling
+│   ├── main.py                # Entry point
+│   ├── flask_backend.py       # Flask API server
+│   └── services/
+│       └── chroma_db_handler.py  # Vector database interactions
+├── frontend/
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── components/
+│   │   │   └── UserInterface.jsx  # Main chat interface
+│   │   └── services/
+│   │       └── apiService.js      # API communication
+│   └── tailwind.config.js     # Tailwind CSS configuration
+├── resources/
+│   ├── config.json            # Configuration settings
+│   └── *.txt                  # Your legal documents
+└── chroma_db/                 # Vector database storage (created automatically)
 ```
-
-## Requirements
-
-- Python 3.10+
-- ChromaDB
-- Ollama with DeepSeek model
-- BeautifulSoup4 (for HTML parsing if needed)
 
 ## Limitations
 
-- The quality of responses depends on the legal documents you provide
-- This is not a substitute for professional legal advice
-- Performance may vary based on the complexity of legal questions and available context
+- Response quality depends on the legal documents you provide
+- Not a substitute for professional legal advice
+- Performance varies based on question complexity
+
+## Technologies Used
+
+- Backend: Python, Flask, ChromaDB
+- Frontend: React, Tailwind CSS
+- AI Model: DeepSeek
+- Database: ChromaDB
 
 ## License
 
@@ -118,4 +154,8 @@ legalmind-ai/
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please submit a Pull Request.
+
+## Support
+
+For issues or questions, please open a GitHub issue in the repository.
