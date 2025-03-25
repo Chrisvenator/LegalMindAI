@@ -75,7 +75,6 @@ class Application:
     def get_answer_from_llm(self, context: str, question: str) -> str:
         """Query the LLM with the given context and question."""
         llm_prompt = (
-            "Always answer in the language you are prompted in."
             "You are an AI Legal Counsel with expertise in all areas of law. "
             "You provide precise, accurate legal analysis and advice based on the information provided. "
             "\n\nAs legal counsel, you should:"

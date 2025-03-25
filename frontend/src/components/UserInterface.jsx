@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Menu, FileText, Briefcase, Calculator, User } from 'lucide-react';
+import { Send, Menu, FileText, Briefcase, Calculator, User, Bot } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { askLegalQuestion } from '../services/apiService';
 import '../index.css';
@@ -107,7 +107,9 @@ const LegalAdviserChat = () => {
                         >
                             {message.sender === 'user' ? (
                                 <User className="mr-2 mt-1 flex-shrink-0" size={20} />
-                            ) : null}
+                            ) : (
+                                <Bot className="mr-2 mt-1 flex-shrink-0" size={20} />
+                            )}
                             <div className={`markdown-content ${message.sender === 'user' ? 'text-fbc-white' : 'text-fbc-primary-text'}`}>
                                 <ReactMarkdown
                                     components={{
