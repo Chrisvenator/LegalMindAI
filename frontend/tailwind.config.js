@@ -1,44 +1,30 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: [
-        "./src/**/*.{js,jsx,ts,tsx}",
-    ],
-    theme: {
-        extend: {
-            colors: {
-                'legal-red': {
-                    DEFAULT: '#D32F2F',
-                    50: '#FFCDD2',
-                    100: '#F44336',
-                    700: '#D32F2F',
-                },
-                'legal-gray': {
-                    50: '#FAFAFA',
-                    100: '#F5F5F5',
-                    200: '#EEEEEE',
-                    300: '#E0E0E0',
-                    400: '#BDBDBD',
-                }
-            },
-            boxShadow: {
-                'chat-input': '0 -2px 4px rgba(0,0,0,0.1)',
-                'sidebar': '2px 0 5px rgba(0,0,0,0.1)'
-            },
-            animation: {
-                'fade-in': 'fadeIn 0.3s ease-out',
-                'slide-in': 'slideIn 0.3s ease-out'
-            },
-            keyframes: {
-                fadeIn: {
-                    '0%': { opacity: '0' },
-                    '100%': { opacity: '1' }
-                },
-                slideIn: {
-                    '0%': { transform: 'translateX(-100%)' },
-                    '100%': { transform: 'translateX(0)' }
-                }
-            }
-        },
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'fbc-blue-60': '#0060df',
+        'fbc-blue-70': '#353131',
+        'fbc-gray-20': '#DEDEDE',
+        'fbc-light-gray': '#F0F0F4',
+        'fbc-white': '#ffffff',
+        'fbc-primary-text': '#15141A',
+        'fbc-secondary-text': '#5B5B66',
+      },
+      fontSize: {
+        'fbc-base': '13px',
+      },
+      transitionProperty: {
+        'fbc-transition': 'all .15s cubic-bezier(.07,.95,0,1)',
+      },
+      borderWidth: {
+        'fbc-borders': '1px',
+      }
     },
-    plugins: [],
+  },
+  plugins: [],
 }
