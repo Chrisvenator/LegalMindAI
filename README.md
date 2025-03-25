@@ -42,17 +42,20 @@ LegalMind AI creates a searchable knowledge base from your legal documents and u
 
 5. Create a new venv enviroment, activate it and install all dependencies from the requirements.txt:
 
+Windows: 
 ```shell
 python -m venv envname
-```
-
-```shell
 .\envname\Scripts\activate
-```
-
-```shell
 pip install -r requirements.txt
 ```
+
+Linux:
+```shell
+python -m venv envname
+source envname/bin/activate
+pip install -r requirements.txt
+```
+
 
 6. Put law .txt Files into Resources
 ## Usage

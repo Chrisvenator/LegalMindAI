@@ -181,3 +181,4 @@ cython_debug/
 /.idea/vcs.xml
 /.idea/VectorSage.iml
 /chroma_db/
+/.idea/
