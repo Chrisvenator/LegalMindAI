@@ -95,7 +95,7 @@ const LegalAdviserChat = () => {
                 </div>
 
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 max-w-5xl mx-auto">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 max-w-5xl mx-auto w-full">
                     {messages.map((message, index) => (
                         <div
                             key={index}
@@ -130,7 +130,7 @@ const LegalAdviserChat = () => {
                 </div>
 
                 {/* Input Area */}
-                <div className="p-4 flex items-center border-t border-fbc-gray-20 max-w-5xl mx-56">
+                <div className="p-4 flex items-center border-t border-fbc-gray-20 max-w-5xl mx-auto w-full">
                     <input
                         type="text"
                         value={inputMessage}
