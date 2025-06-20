@@ -7,11 +7,11 @@ import '../index.css';
 const LegalAdviserChat = () => {
     const [messages, setMessages] = useState([
         {
-            text: "**Willkommen bei Ihrer digitalen Rechtsberatung**\n\n" +
-                "- Kompetent\n" +
-                "- Vertraulich\n" +
-                "- Rund um die Uhr\n\n" +
-                "Ob *Mietrecht*, *Arbeitsrecht* oder *Vertragsfragen* – ich helfe Ihnen, Ihre rechtlichen Anliegen schnell und verständlich zu klären. Was kann ich heute für Sie tun?",
+            text: "**Welcome to your digital legal advisory service**\n\n" +
+                "- Competent\n" +
+                "- Confidential\n" +
+                "- Available 24/7\n\n" +
+                "Whether *tenancy law*, *employment law* or *contract matters* – I’ll help you clarify your legal issues quickly and clearly. What can I do for you today?",
             sender: 'bot'
         }
     ]);
@@ -70,12 +70,12 @@ const LegalAdviserChat = () => {
                             New Conversation
                         </li>
                         <li className="mb-2 p-2 rounded flex items-center cursor-pointer hover:bg-fbc-blue-60">
-                            <Briefcase className="mr-2" size={20} />
-                            Business Registration
+                            <FileText className="mr-2" size={20} />
+                            Old Conversation
                         </li>
                         <li className="mb-2 p-2 rounded flex items-center cursor-pointer hover:bg-fbc-blue-60">
-                            <Calculator className="mr-2" size={20} />
-                            Tax Obligations
+                            <FileText className="mr-2" size={20} />
+                            Older Conversation
                         </li>
                     </ul>
                 </div>
